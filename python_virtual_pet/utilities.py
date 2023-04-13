@@ -33,6 +33,7 @@ if __name__ == "__main__":
     selection = get_menu_choice(menu, ("1", "2", "3"))
 
     print(f"\nYou selected {selection}")
+
     new_menu = """
     Here is your list of options:
         1 - Option 1: Play with your pet.
@@ -43,3 +44,4 @@ if __name__ == "__main__":
 
     options = ("1", "2", "3", "4")
     new_choice = get_menu_choice(new_menu)
+    print("You selected: " + new_choice)

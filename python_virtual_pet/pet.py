@@ -41,39 +41,46 @@ class Pet:
         while choice != "4":
             choice = utilities.get_menu_choice(menu, ("1", "2", "3", "4"))
             if choice == "1":
-                description = f"{self.name} runs after the toy you toss."
                 if random.choice("01") == "1":
-                    description += f"Once {self.name} grabs the toy,"
-                    description += f"{self.name} runs away with it."
+                    description = f"{self.name} runs after the toy you toss."
+                    description += f" Once {self.name} grabs the toy,"
+                    description += f" {self.name} runs away with it. "
                     self.happiness += 1
                     # quit since the pet ran off with the toy
                     choice = "4"
                 else:
                     description += f"{self.name} runs after the toy and picks"
-                    description += "it up and brings it back to you."
-                    description += f"{self.name} really likes this game."
+                    description += " it up and brings it back to you."
+                    description += f" {self.name} really likes this game."
                     self.happiness += 2
             elif choice == "4":
-                description += f"{self.name} goes back to their favorite spot."
-                description += "You are done playing."
+                description += f" {self.name} goes back to their favorite spot."
+                description += " You are done playing. "
             else:
-                description = f"{self.name} says weeee!!!"
+                description = f"{self.name} says weeee!!! "
                 self.happiness += 1
             
             # play affects other attributes
             self.hunger += 1
-            self.tired += 1
+            self.tiredness += 1
+            self.boredom -= 1
 
-            # keep happiness capped at 10
+            # keep happiness capped at 10 and boredom capped at 0
             if self.happiness > 10:
                 self.happiness = 10
-            print(description)
+
+            if self.boredom < 0:
+                self.boredom = 0
 
             # we're done playing - provide update
-            description += f"{self.name}'s happiness is at {self.happiness}"
+            description += f" {self.name}'s happiness is at {self.happiness}."
+            description += f" {self.name}'s hunger is at {self.hunger} and "
+            description += f"tiredness is at {self.tiredness}."
+            description += f" {self.name}'s boredom is at {self.boredom}."
             print(description)
 
 # global scope
 if __name__ == "__main__":
-    # Construct 2 pet instances
+    # Construct pet instances
     fluffy = Pet("Fluffy", "rock")
+    fluffy.play()

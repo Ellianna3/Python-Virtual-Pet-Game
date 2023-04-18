@@ -7,12 +7,12 @@ import utilities
 import random
 
 class Pet: 
-    """A virtual pet (can be used as a base class for other pet types).
+    """A virtual fish (can be used as a base class for other pet types).
 
     Attributes:
         name: str
         breed: str
-        nicknames: list (a list strings of given nicknames for your pet)
+        nicknames: list (a list strings of given nicknames for your fish)
         happiness: int how happy is the pet from 0-10 (10 being happiest)
         hunger: int how hungry is the pet from 0-10 (10 being hungriest)
         health: int how healthy is the pet 0-10 (10 being healthiest)
@@ -31,31 +31,41 @@ class Pet:
         self.tiredness = 0
 
     def play(self):
-        """let the user choose how to play with the pet"""
+        """let the user choose how to play with their fish"""
         menu = f"\nChoose an option for playing with {self.name}:\n"
-        menu += "\n\t1 - play fetch\n\t2 - chase the laser pointer"
-        menu += "\n\t3 - tug of war\n\t4 - quit"
+        menu += "\n\t1 - play fetch\n\t2 - follow your finger"
+        menu += "\n\t3 - swim through the hoop\n\t4 - quit"
 
         choice = ""
         description = ""
         while choice != "4":
             choice = utilities.get_menu_choice(menu, ("1", "2", "3", "4"))
             if choice == "1":
+                description += "\nYou toss a very small stick into the far"
+                description += " corner of the tank."
                 if random.choice("01") == "1":
-                    description = f"{self.name} runs after the toy you toss."
-                    description += f" Once {self.name} grabs the toy,"
-                    description += f" {self.name} runs away with it. "
+                    description += f" {self.name} runs after the stick you toss."
+                    description += f" Once {self.name} grabs the stick,"
+                    description += f" {self.name} swims away and hides it in"
+                    description += f" {self.name}'s favorite tank plant."
                     self.happiness += 1
                     # quit since the pet ran off with the toy
                     choice = "4"
                 else:
-                    description += f"{self.name} runs after the toy and picks"
-                    description += " it up and brings it back to you."
-                    description += f" {self.name} really likes this game."
+                    description += f" {self.name} runs after the stick, picks"
+                    description += " it up, and brings it back to you."
+                    description += f"{self.name} swims in a little circle"
+                    description += " and makes a few small bubbles."
+                    description += f" {self.name} really likes this game!"
                     self.happiness += 2
             elif choice == "4":
                 description += f" {self.name} goes back to their favorite spot."
                 description += " You are done playing. "
+            elif choice == "2":
+                description += "You hold your finger up to the glass of"
+                description += f" {self.name}'s tank and draw a path."
+                description += f" {self.name} follows your finger."
+                description += f" {self.name} finds this intellectually stimulating."
             else:
                 description = f"{self.name} says weeee!!! "
                 self.happiness += 1
@@ -73,10 +83,10 @@ class Pet:
                 self.boredom = 0
 
             # we're done playing - provide update
-            description += f" {self.name}'s happiness is at {self.happiness}."
-            description += f" {self.name}'s hunger is at {self.hunger} and "
-            description += f"tiredness is at {self.tiredness}."
-            description += f" {self.name}'s boredom is at {self.boredom}."
+            description += f" \n{self.name}'s happiness is at {self.happiness},"
+            description += f" hunger is at {self.hunger},"
+            description += f" tiredness is at {self.tiredness}, and"
+            description += f" boredom is at {self.boredom}."
             print(description)
 
 # global scope

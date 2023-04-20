@@ -11,7 +11,6 @@ class Pet:
 
     Attributes:
         name: str
-        breed: str
         nicknames: list (a list strings of given nicknames for your fish)
         happiness: int how happy is the pet from 0-10 (10 being happiest)
         hunger: int how hungry is the pet from 0-10 (10 being hungriest)
@@ -20,9 +19,8 @@ class Pet:
         tiredness: int how tired is the pet 0-10 (10 being most tired)
     """
     # constructor method
-    def __init__(self, name: str, breed: str) -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
-        self.breed = breed
         self.nicknames = []
         self.happiness = 5
         self.hunger = 4
@@ -41,34 +39,36 @@ class Pet:
         while choice != "4":
             choice = utilities.get_menu_choice(menu, ("1", "2", "3", "4"))
             if choice == "1":
-                description += "\nYou toss a very small stick into the far"
-                description += " corner of the tank."
+                description += "\nYou toss a very small stick into the far "
+                description += "corner of the tank. "
                 if random.choice("01") == "1":
-                    description += f" {self.name} runs after the stick you toss."
-                    description += f" Once {self.name} grabs the stick,"
-                    description += f" {self.name} swims away and hides it in"
-                    description += f" {self.name}'s favorite tank plant."
+                    description += f"{self.name} runs after the stick you toss. "
+                    description += f"Once {self.name} grabs the stick, "
+                    description += f"{self.name} swims away and hides it in "
+                    description += f"{self.name}'s favorite tank plant. "
                     self.happiness += 1
                     # quit since the pet ran off with the toy
                     choice = "4"
                 else:
-                    description += f" {self.name} runs after the stick, picks"
-                    description += " it up, and brings it back to you."
-                    description += f"{self.name} swims in a little circle"
-                    description += " and makes a few small bubbles."
-                    description += f" {self.name} really likes this game!"
+                    description += f"{self.name} runs after the stick, picks "
+                    description += "it up, and brings it back to you. "
+                    description += f"{self.name} swims in a little circle "
+                    description += "and makes a few small bubbles. "
+                    description += f"{self.name} really likes this game! "
                     self.happiness += 2
-            elif choice == "4":
-                description += f" {self.name} goes back to their favorite spot."
-                description += " You are done playing. "
             elif choice == "2":
-                description += "You hold your finger up to the glass of"
-                description += f" {self.name}'s tank and draw a path."
-                description += f" {self.name} follows your finger."
-                description += f" {self.name} finds this intellectually stimulating."
-            else:
-                description = f"{self.name} says weeee!!! "
-                self.happiness += 1
+                description += "You hold your finger up to the glass of "
+                description += f"{self.name}'s tank and draw a path. "
+                description += f"{self.name} follows your finger. "
+                description += f"{self.name} finds this intellectually stimulating. "
+            elif choice == "3":
+                description += "You take a small plastic (but fish safe) ring and "
+                description += "hold it just above the surface of the water. "
+                description += f"{self.name} gets a 'running' start and jumps "
+                description += "out of the water through the hoop! "
+            elif choice == "4":
+                description += f"{self.name} goes back to their favorite spot. "
+                description += "You are done playing. "
             
             # play affects other attributes
             self.hunger += 1
@@ -83,14 +83,17 @@ class Pet:
                 self.boredom = 0
 
             # we're done playing - provide update
-            description += f" \n{self.name}'s happiness is at {self.happiness},"
-            description += f" hunger is at {self.hunger},"
-            description += f" tiredness is at {self.tiredness}, and"
-            description += f" boredom is at {self.boredom}."
+            description += f"\n{self.name}'s happiness is at {self.happiness}, "
+            description += f"hunger is at {self.hunger}, "
+            description += f"tiredness is at {self.tiredness}, and "
+            description += f"boredom is at {self.boredom}. "
             print(description)
+            description = ""
 
 # global scope
 if __name__ == "__main__":
     # Construct pet instances
-    fluffy = Pet("Fluffy", "rock")
-    fluffy.play()
+    fish_name = input("What would you like your fish to be named?: ")
+    user_pet = Pet(fish_name)
+
+    user_pet.play()

@@ -28,6 +28,26 @@ class Pet:
         self.boredom = 5
         self.tiredness = 0
 
+    # main menu
+    def choose_action(self):
+        menu = f"\nChoose what to do next with {self.name}:\n"
+        menu += f"\n\t1 - Play\n\t2 - clean {self.name}'s tank"
+        menu += f"\n\t3 - teach {self.name} a trick\n\t4 - sell {self.name}"
+        
+        choice = ""
+        description = ""
+        while choice != "4":
+            choice = utilities.get_menu_choice(menu, ("1", "2", "3", "4"))
+            if choice == "1":
+                pass
+            elif choice == "2":
+                pass
+            elif choice == "3":
+                pass
+            elif choice == "4":
+                pass
+
+    # play with the fish
     def play(self):
         """let the user choose how to play with their fish"""
         menu = f"\nChoose an option for playing with {self.name}:\n"
@@ -47,6 +67,9 @@ class Pet:
                     description += f"{self.name} swims away and hides it in "
                     description += f"{self.name}'s favorite tank plant. "
                     self.happiness += 1
+                    self.hunger += 1
+                    self.tiredness += 1
+                    self.boredom -= 1
                     # quit since the pet ran off with the toy
                     choice = "4"
                 else:
@@ -56,24 +79,30 @@ class Pet:
                     description += "and makes a few small bubbles. "
                     description += f"{self.name} really likes this game! "
                     self.happiness += 2
+                    self.hunger += 1
+                    self.tiredness += 1
+                    self.boredom -= 1
             elif choice == "2":
                 description += "You hold your finger up to the glass of "
                 description += f"{self.name}'s tank and draw a path. "
                 description += f"{self.name} follows your finger. "
                 description += f"{self.name} finds this intellectually stimulating. "
+                self.happiness += 1
+                self.hunger += 1
+                self.tiredness += 1
+                self.boredom -= 2
             elif choice == "3":
                 description += "You take a small plastic (but fish safe) ring and "
                 description += "hold it just above the surface of the water. "
                 description += f"{self.name} gets a 'running' start and jumps "
                 description += "out of the water through the hoop! "
+                self.happiness += 1
+                self.hunger += 1
+                self.tiredness += 2
+                self.boredom -= 1
             elif choice == "4":
                 description += f"{self.name} goes back to their favorite spot. "
                 description += "You are done playing. "
-            
-            # play affects other attributes
-            self.hunger += 1
-            self.tiredness += 1
-            self.boredom -= 1
 
             # keep happiness capped at 10 and boredom capped at 0
             if self.happiness > 10:

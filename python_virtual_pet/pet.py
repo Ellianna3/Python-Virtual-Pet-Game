@@ -31,21 +31,22 @@ class Pet:
     # main menu
     def choose_action(self):
         menu = f"\nChoose what to do next with {self.name}:\n"
-        menu += f"\n\t1 - Play\n\t2 - clean {self.name}'s tank"
-        menu += f"\n\t3 - teach {self.name} a trick\n\t4 - sell {self.name}"
+        menu += f"\n\t1 - Play with {self.name}\n\t2 - Clean {self.name}'s tank"
+        menu += f"\n\t3 - Feed {self.name}\n\t4 - Sell {self.name}"
         
         choice = ""
-        description = ""
         while choice != "4":
             choice = utilities.get_menu_choice(menu, ("1", "2", "3", "4"))
             if choice == "1":
-                pass
+                print(f"\n{self.name} is excited to play!")
+                self.play()
             elif choice == "2":
-                pass
+                print(f"\nYou have decided to clean {self.name}'s tank.")
             elif choice == "3":
-                pass
+                print(f"\nYou have decided to feed {self.name}")
             elif choice == "4":
-                pass
+                print(f"\nThat's so sad, why would you want to sell {self.name}???")
+        
 
     # play with the fish
     def play(self):
@@ -112,7 +113,7 @@ class Pet:
                 self.boredom = 0
 
             # we're done playing - provide update
-            description += f"\n{self.name}'s happiness is at {self.happiness}, "
+            description += f"\n\n{self.name}'s happiness is at {self.happiness}, "
             description += f"hunger is at {self.hunger}, "
             description += f"tiredness is at {self.tiredness}, and "
             description += f"boredom is at {self.boredom}. "
@@ -122,7 +123,8 @@ class Pet:
 # global scope
 if __name__ == "__main__":
     # Construct pet instances
-    fish_name = input("What would you like your fish to be named?: ")
+    fish_name = input("\nWhat would you like your fish to be named?: ")
+    fish_name = fish_name.capitalize()
     user_pet = Pet(fish_name)
 
-    user_pet.play()
+    user_pet.choose_action()

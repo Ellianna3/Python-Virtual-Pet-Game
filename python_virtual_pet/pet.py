@@ -30,24 +30,48 @@ class Pet:
 
     # main menu
     def choose_action(self):
+        """The user can choose to do five things with their fish.
+        They can play with the fish, clean the fish's tank, feed the fish,
+        or sell the fish, aka quit. This function is just the gateway to 
+        all of the options, and tells the user which function they have selected.
+        """
         menu = f"\nChoose what to do next with {self.name}:\n"
         menu += f"\n\t1 - Play with {self.name}\n\t2 - Clean {self.name}'s tank"
-        menu += f"\n\t3 - Feed {self.name}\n\t4 - Sell {self.name}"
+        menu += f"\n\t3 - Feed {self.name}\n\t4 - Display {self.name}'s stats"
+        menu += f"\n\t5 - Sell {self.name}"
         
         choice = ""
-        while choice != "4":
-            choice = utilities.get_menu_choice(menu, ("1", "2", "3", "4"))
+        while choice != "5":
+            choice = utilities.get_menu_choice(menu, ("1", "2", "3", "4", "5"))
             if choice == "1":
                 print(f"\n{self.name} is excited to play!")
                 self.play()
             elif choice == "2":
                 print(f"\nYou have decided to clean {self.name}'s tank.")
             elif choice == "3":
-                print(f"\nYou have decided to feed {self.name}")
+                print(f"\nYou have decided to feed {self.name}.")
             elif choice == "4":
+                print(f"\nYou have decided to check up on {self.name}.")
+            elif choice == "5":
                 print(f"\nThat's so sad, why would you want to sell {self.name}???")
-        
+    
+    # clean the fish's tank, improve health and happiness
+    def clean_tank(self):
+        pass
 
+    # feed the fish, improve hunger and tiredness
+    def feed(self):
+        pass
+
+    def check_stats(self):
+        description = f"\nHere are {self.name}'s stats:"
+        description += f"\n\tHappiness: {self.happiness}/10"
+        description += f"\n\tHunger: {self.hunger}/10"
+        description += f"\n\tHealth: {self.health}/10"
+        description += f"\n\tBoredom: {self.boredom}/10"
+        description += f"\n\tTiredness: {self.tiredness}/10"
+        print(description)
+        
     # play with the fish
     def play(self):
         """let the user choose how to play with their fish"""
@@ -105,12 +129,13 @@ class Pet:
                 description += f"{self.name} goes back to their favorite spot. "
                 description += "You are done playing. "
 
-            # keep happiness capped at 10 and boredom capped at 0
+            # keep attributes capped
             if self.happiness > 10:
                 self.happiness = 10
-
             if self.boredom < 0:
                 self.boredom = 0
+            if self.hunger > 10:
+                self.hunger = 10
 
             # we're done playing - provide update
             description += f"\n\n{self.name}'s happiness is at {self.happiness}, "

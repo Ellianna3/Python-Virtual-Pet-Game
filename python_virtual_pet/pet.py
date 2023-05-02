@@ -52,6 +52,7 @@ class Pet:
                 print(f"\nYou have decided to feed {self.name}.")
             elif choice == "4":
                 print(f"\nYou have decided to check up on {self.name}.")
+                self.check_stats()
             elif choice == "5":
                 print(f"\nThat's so sad, why would you want to sell {self.name}???")
     

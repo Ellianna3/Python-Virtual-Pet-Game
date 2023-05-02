@@ -1,0 +1,13 @@
+{
+    "pets": [
+        {
+            "name": "fish",
+            "nicknames": ["f"],
+            "happiness": 5,
+            "hunger": 4,
+            "health": 5,
+            "boredom": 5,
+            "tiredness": 0
+        }
+    ]
+}

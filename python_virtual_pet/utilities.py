@@ -3,6 +3,23 @@ a set of functions to be used to
 make the program more useful."""
 
 # import statements
+from pathlib import Path
+import json
+
+def get_file_contents(path: str, filename: str) -> str:
+    """Returns the contexts of the file in the path.
+    
+    Args:
+        path: the relative folder path should end with a forward slash
+        filename: the name of the file with extension
+        
+    Returns:
+            contents: a string of the file contents"""
+
+    folder = Path(path)
+    file_to_open = folder / filename
+    f = open(file_to_open)
+    return f.read()
 
 def get_menu_choice(menu: str, legal_choices: tuple) -> str:
     """Displays a menu of options, and asks the user to make a choice.
@@ -28,20 +45,25 @@ def get_menu_choice(menu: str, legal_choices: tuple) -> str:
     return user_choice
 
 if __name__ == "__main__":
-    menu = "\nHere is your list of options:\n\n\t1 - Option #1\n"
-    menu += "\t2 - Option #2 \n\t3 - Option #3\n\n\n"
-    selection = get_menu_choice(menu, ("1", "2", "3"))
+    contents = get_file_contents("data/", "pet.json")
+    print(contents)
 
-    print(f"\nYou selected {selection}")
+    pet_dictionary = json.loads(contents)
+    print(pet_dictionary)
+    # menu = "\nHere is your list of options:\n\n\t1 - Option #1\n"
+    # menu += "\t2 - Option #2 \n\t3 - Option #3\n\n\n"
+    # selection = get_menu_choice(menu, ("1", "2", "3"))
 
-    new_menu = """
-    Here is your list of options:
-        1 - Option 1: Play with your pet.
-        2 - Option 2: Feed your pet.
-        3 - Option 3: post a video of your pet on instagram.
-        4 - Option 4: Pet your pet.
-    """
+    # print(f"\nYou selected {selection}")
 
-    options = ("1", "2", "3", "4")
-    new_choice = get_menu_choice(new_menu)
-    print("You selected: " + new_choice)
+    # new_menu = """
+    # Here is your list of options:
+    #     1 - Option 1: Play with your pet.
+    #     2 - Option 2: Feed your pet.
+    #     3 - Option 3: post a video of your pet on instagram.
+    #     4 - Option 4: Pet your pet.
+    # """
+
+    # options = ("1", "2", "3", "4")
+    # new_choice = get_menu_choice(new_menu)
+    # print("You selected: " + new_choice)

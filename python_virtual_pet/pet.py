@@ -5,6 +5,8 @@ A virtual pet complete with pet emotions and behavior.
 """
 import utilities
 import random
+import uuid
+import json
 
 class Pet: 
     """A virtual fish (can be used as a base class for other pet types).
@@ -21,12 +23,45 @@ class Pet:
     # constructor method
     def __init__(self, name: str) -> None:
         self.name = name
+        self.ID = uuid.uuid1().hex
         self.nicknames = []
         self.happiness = 5
         self.hunger = 4
         self.health = 5
         self.boredom = 5
         self.tiredness = 0
+
+        self.store_pet_data()
+
+    def store_pet_data(self) -> None:
+        """ Insert pet information into the pets.json file"""
+        # get the contents of the pets
+        pets_text = utilities.get_file_contents("data/", "pets.json")
+        pets_dictionary = json.loads(pets_text)
+
+        # create a pet dictionary object and append it to the pet_dictionary
+        this_pet = {
+            "name": self.name,
+            "ID": self.ID,
+            "nicknames": self.nicknames,
+            "happiness": self.happiness,
+            "hunger": self.hunger,
+            "health": self.health,
+            "boredom": self.boredom,
+            "tiredness": self.tiredness
+        }
+        pets_dictionary["pets"].append(this_pet)
+
+        pets_json = json.dumps(pets_dictionary)
+
+        # Save to pets.json
+        with open("data/pets.json", "w") as outfile:
+            outfile.write(pets_json)
+
+    def load_pet(self) -> None:
+        """Grab pet data from the pets.json file and get the attributes."""
+        # Get all the pets from pets.json
+        print("loading")
 
     # main menu
     def choose_action(self):
@@ -64,6 +99,7 @@ class Pet:
     def feed(self):
         pass
 
+    # check all of the attributes of the fish
     def check_stats(self):
         description = f"\nHere are {self.name}'s stats:"
         description += f"\n\tHappiness: {self.happiness}/10"

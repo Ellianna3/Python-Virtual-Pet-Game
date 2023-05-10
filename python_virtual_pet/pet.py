@@ -60,6 +60,7 @@ class Pet:
 
     def load_pet(self) -> None:
         """Grab pet data from the pets.json file and get the attributes."""
+
         # Get all the pets from pets.json
         print("loading")
 
@@ -145,7 +146,7 @@ class Pet:
                     self.tiredness += 1
                     self.boredom -= 1
             elif choice == "2":
-                description += "You hold your finger up to the glass of "
+                description += "\nYou hold your finger up to the glass of "
                 description += f"{self.name}'s tank and draw a path. "
                 description += f"{self.name} follows your finger. "
                 description += f"{self.name} finds this intellectually stimulating. "
@@ -154,7 +155,7 @@ class Pet:
                 self.tiredness += 1
                 self.boredom -= 2
             elif choice == "3":
-                description += "You take a small plastic (but fish safe) ring and "
+                description += "\nYou take a small plastic (but fish safe) ring and "
                 description += "hold it just above the surface of the water. "
                 description += f"{self.name} gets a 'running' start and jumps "
                 description += "out of the water through the hoop! "

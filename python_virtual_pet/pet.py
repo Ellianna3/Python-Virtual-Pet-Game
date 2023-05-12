@@ -31,8 +31,6 @@ class Pet:
         self.boredom = 5
         self.tiredness = 0
 
-        self.store_pet_data()
-
     def store_pet_data(self) -> None:
         """ Insert pet information into the pets.json file"""
         # get the contents of the pets
@@ -58,11 +56,28 @@ class Pet:
         with open("data/pets.json", "w") as outfile:
             outfile.write(pets_json)
 
-    def load_pet(self) -> None:
+    @staticmethod
+    def load_pet() -> None:
         """Grab pet data from the pets.json file and get the attributes."""
 
         # Get all the pets from pets.json
-        print("loading")
+        pets = utilities.get_file_contents("data/", "pets.json")
+        pets_dictionary = json.loads(pets)
+        all_pets = pets_dictionary.get("pets")
+
+    @staticmethod
+    def get_pet():
+        """Show user list of pets and allow them to select a pet to lay with."""
+        # Get all the pets from pets.json
+        pets = utilities.get_file_contents("data/", "pets.json")
+        pets_dictionary = json.loads(pets)
+        all_pets = pets_dictionary.get("pets")
+
+        # show list of pets and let the user select a pet
+        for pet in all_pets:
+            print(pet.get["name"])
+
+        # create and return a pet
 
     # main menu
     def choose_action(self):
@@ -74,7 +89,7 @@ class Pet:
         menu = f"\nChoose what to do next with {self.name}:\n"
         menu += f"\n\t1 - Play with {self.name}\n\t2 - Clean {self.name}'s tank"
         menu += f"\n\t3 - Feed {self.name}\n\t4 - Display {self.name}'s stats"
-        menu += f"\n\t5 - Sell {self.name}"
+        menu += f"\n\t5 - Sell {self.name} (Quit)"
         
         choice = ""
         while choice != "5":
@@ -84,8 +99,10 @@ class Pet:
                 self.play()
             elif choice == "2":
                 print(f"\nYou have decided to clean {self.name}'s tank.")
+                self.clean_tank()
             elif choice == "3":
                 print(f"\nYou have decided to feed {self.name}.")
+                self.feed()
             elif choice == "4":
                 print(f"\nYou have decided to check up on {self.name}.")
                 self.check_stats()
@@ -94,11 +111,15 @@ class Pet:
     
     # clean the fish's tank, improve health and happiness
     def clean_tank(self):
-        pass
+        print(f"\nYou move {self.name} to a safe tank while you clean its tank. ")
+        print(f"When you put {self.name} back, it feels great!")
+        self.health += 1
 
     # feed the fish, improve hunger and tiredness
     def feed(self):
-        pass
+        print("\nYou drop a bit of fish food into the tank.")
+        print(f"{self.name} swims to the top of the tank and eats it!")
+        self.hunger -= 1
 
     # check all of the attributes of the fish
     def check_stats(self):

@@ -50,20 +50,4 @@ if __name__ == "__main__":
 
     pet_dictionary = json.loads(contents)
     print(pet_dictionary)
-    # menu = "\nHere is your list of options:\n\n\t1 - Option #1\n"
-    # menu += "\t2 - Option #2 \n\t3 - Option #3\n\n\n"
-    # selection = get_menu_choice(menu, ("1", "2", "3"))
-
-    # print(f"\nYou selected {selection}")
-
-    # new_menu = """
-    # Here is your list of options:
-    #     1 - Option 1: Play with your pet.
-    #     2 - Option 2: Feed your pet.
-    #     3 - Option 3: post a video of your pet on instagram.
-    #     4 - Option 4: Pet your pet.
-    # """
-
-    # options = ("1", "2", "3", "4")
-    # new_choice = get_menu_choice(new_menu)
-    # print("You selected: " + new_choice)
+   

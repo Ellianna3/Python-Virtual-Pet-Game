@@ -78,6 +78,25 @@ class Pet:
             print(pet.get["name"])
 
         # create and return a pet
+    
+    @staticmethod
+    def create_pet(pet_dict: dict):
+        # get pet name
+        name = pet_dict.get("name")
+
+        # create pet object
+        pet = Pet(name)
+
+        # set all pet attributes
+        pet.ID = pet_dict.get("ID")
+        pet.nicknames = pet_dict.get("nicknames")
+        pet.happiness = pet_dict.get("happiness")
+        pet.hunger = pet_dict.get("hunger")
+        pet.health = pet_dict.get("health")
+        pet.boredom = pet_dict.get("boredom")
+        pet.tiredness = pet_dict.get("tiredness")
+
+        return pet
 
     # main menu
     def choose_action(self):

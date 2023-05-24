@@ -1,6 +1,8 @@
 """ The Virtual Pet Program """
 
 import utilities
+import json
+import pet
 from pet import Pet
 
 def main():
@@ -22,8 +24,28 @@ def main():
             pet = create_new_pet()
             active_pets.append(pet)
         elif choice == "2":
+            pets = utilities.get_file_contents("data/", "pets.json")
+            pets = json.loads(pets)
+            pets =  pets.get("pets")
+            
+            # Loop though all pets asking if the user wants to play with one
+            # of the pets.
+            #IF yes, append that pet to active_pets and break
+            for pet in pets:
+                name = pet.get("name")
+                play_with = input(f"Would you like to play with {name}? (y/n) ")
+                if play_with == "y":
+                    # create a pet object with the data
+                    new_pet = Pet.create_pet(pet)
+
+                    # append pet to active_pets
+                    active_pets.append(new_pet)
+
+                    # play with the chosen pet
+                    
             if not active_pets:
                 print("\nYou have no pets to play with.")
+                print("Try creating a new pet!")
         elif choice == "3":
             if active_pets:
                 for pet in active_pets:

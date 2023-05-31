@@ -44,6 +44,7 @@ def main():
 
 def interact_with_pet(pet):
     """interact with the pet"""
+    pet.choose_action()
     return pet
 
 def get_pet(pets):
@@ -54,7 +55,7 @@ def get_pet(pets):
         if play_with == "y":
             # create a pet object with the data
             new_pet = Pet.create_pet(pet)
-            return pet
+            return new_pet
     return None
 
 def get_pets() -> list:

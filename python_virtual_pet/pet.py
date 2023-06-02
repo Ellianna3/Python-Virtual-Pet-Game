@@ -67,7 +67,7 @@ class Pet:
 
     @staticmethod
     def get_pet():
-        """Show user list of pets and allow them to select a pet to lay with."""
+        """Show user list of pets and allow them to select a pet to play with."""
         # Get all the pets from pets.json
         pets = utilities.get_file_contents("data/", "pets.json")
         pets_dictionary = json.loads(pets)
@@ -108,7 +108,7 @@ class Pet:
         menu = f"\nChoose what to do next with {self.name}:\n"
         menu += f"\n\t1 - Play with {self.name}\n\t2 - Clean {self.name}'s tank"
         menu += f"\n\t3 - Feed {self.name}\n\t4 - Display {self.name}'s stats"
-        menu += f"\n\t5 - Sell {self.name} (Quit)"
+        menu += f"\n\t5 - Stop interacting with {self.name} (Quit)"
         
         choice = ""
         while choice != "5":
@@ -126,8 +126,9 @@ class Pet:
                 print(f"\nYou have decided to check up on {self.name}.")
                 self.check_stats()
             elif choice == "5":
-                print(f"\nThat's so sad, why would you want to sell {self.name}???")
-    
+                print(f"\nHeading back to main menu, don't forget ")
+                print(f"to save {self.name}'s data.")
+
     # clean the fish's tank, improve health and happiness
     def clean_tank(self):
         print(f"\nYou move {self.name} to a safe tank while you clean its tank. ")

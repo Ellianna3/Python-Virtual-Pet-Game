@@ -30,21 +30,32 @@ class Tank:
         tank.cleanliness = tank_dict.get("cleanliness")
         tank.coolness = tank_dict.get("coolness")
 
+    def load_tank_data(self) -> None:
+        tank = utilities.get_file_contents("data/", "tank.json")
+        tank_dictionary = json.loads(tank)
+        self.cleanliness = tank_dictionary.get("cleanliness")
+        self.coolness = tank_dictionary.get("coolness")
+
+
     def store_tank_data(self) -> None:
         """ Insert tank info into the tank.json file"""
         # get the contents of tank
         tank_text = utilities.get_file_contents("data/", "tank.json")
-        tank_dictionary = json.load(tank_text)
+        tank_dictionary = json.loads(tank_text)
 
-        # create a tank dict object and append it to the tank_dictionary
-        tank = {
-            "cleanliness": self.cleanliness,
-            "coolness": self.coolness
-        }
-        tank_dictionary["tank"].append(tank)
+        tank_dictionary["cleanliness"] = self.cleanliness
+        tank_dictionary["coolness"] = self.coolness
 
         tank_json = json.dumps(tank_dictionary)
 
         # Save to pets.json
         with open("data/tank.json", "w") as outfile:
             outfile.write(tank_json)
+
+if __name__ == "__main__":
+    t1 = Tank()
+    print(t1.cleanliness)
+    print(t1.coolness)
+    t1.store_tank_data()
+    print(t1.cleanliness)
+    print(t1.coolness)

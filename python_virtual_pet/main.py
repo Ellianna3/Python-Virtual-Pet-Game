@@ -27,10 +27,7 @@ def main():
         if choice == "1":
             pet = create_new_pet()
             # if there is a tank, use it, if not, make a new one
-            if tank == None:
-                tank = create_new_tank()
-            else:
-                tank = get_tank()
+            tank = get_tank()
             pet = interact_with_pet(pet)
 
         elif choice == "2":
@@ -93,7 +90,7 @@ def create_new_tank():
 
 def get_tank():
     tank = utilities.get_file_contents("data/", "tank.json")
-    tank = json.load(tank)
+    tank = json.loads(tank)
     new_tank = Tank.create_tank(tank)
     return new_tank
 

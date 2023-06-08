@@ -106,7 +106,7 @@ class Pet:
         all of the options, and tells the user which function they have selected.
         """
         menu = f"\nChoose what to do next with {self.name}:\n"
-        menu += f"\n\t1 - Play with {self.name}\n\t2 - Clean {self.name}'s tank"
+        menu += f"\n\t1 - Play with {self.name}\n\t2 - Photograph {self.name}"
         menu += f"\n\t3 - Feed {self.name}\n\t4 - Display {self.name}'s stats"
         menu += f"\n\t5 - Stop interacting with {self.name} (Quit)"
         
@@ -117,8 +117,8 @@ class Pet:
                 print(f"\n{self.name} is excited to play!")
                 self.play()
             elif choice == "2":
-                print(f"\nYou have decided to clean {self.name}'s tank.")
-                self.clean_tank()
+                print(f"\nYou have decided to take a picture of {self.name}.")
+                self.picture()
             elif choice == "3":
                 print(f"\nYou have decided to feed {self.name}.")
                 self.feed()
@@ -130,16 +130,21 @@ class Pet:
                 print(f"to save {self.name}'s data.")
 
     # clean the fish's tank, improve health and happiness
-    def clean_tank(self):
-        print(f"\nYou move {self.name} to a safe tank while you clean its tank. ")
-        print(f"When you put {self.name} back, it feels great!")
+    def picture(self):
+        print(f"\nYou grab your phone and pull up the camera app. {self.name} ")
+        print(f"seems to know what you are doing and poses. The picture turns ")
+        print("out great! ")
         self.health += 1
+        if self.health > 10:
+            self.health = 10
 
     # feed the fish, improve hunger and tiredness
     def feed(self):
         print("\nYou drop a bit of fish food into the tank.")
         print(f"{self.name} swims to the top of the tank and eats it!")
         self.hunger -= 1
+        if self.hunger < 0:
+            self.hunger = 0
 
     # check all of the attributes of the fish
     def check_stats(self):

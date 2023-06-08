@@ -8,10 +8,11 @@ from tank import Tank
 
 new_menu = """
     Here is your list of options:
-        1 - Option 1: Create a new pet
-        2 - Option 2: Select your pet to interact with
-        3 - Option 3: Save pet data
-        4 - Option 4: Quit
+        1 - Option 1: Buy a new fish
+        2 - Option 2: Select your fish to interact with
+        3 - Option 3: Save fish data
+        4 - Option 4: Clean your fish tank
+        5 - Option 5: Quit
     """
 
 def main():
@@ -19,9 +20,9 @@ def main():
     tank = get_tank()
 
     # Create a menu for pet playgroud
-    options = ("1", "2", "3", "4")
+    options = ("1", "2", "3", "4", "5")
     choice = ""
-    while choice != "4":
+    while choice != "5":
         choice = utilities.get_menu_choice(new_menu, options)
         
         if choice == "1":
@@ -34,8 +35,8 @@ def main():
             pet = get_pet(pets)
             # redundancy
             if not pet:
-                print("\nYou have no pets to play with.")
-                print("Try creating a new pet!")
+                print("\nYou have no fish to play with.")
+                print("Try buying a new fish!")
                 continue
             # use choose_action from pet.py
             pet = interact_with_pet(pet)
@@ -45,6 +46,12 @@ def main():
                 pet.store_pet_data()
                 tank.store_tank_data()
                 print("The fish's data has been saved.")
+
+        elif choice == "4":
+            print("\nYour fish will appreciate a clean tank!")
+            tank.cleanliness += 2
+            if tank.cleanliness > 10:
+                tank.cleanliness = 10
 
     print("\nThanks for playing!")
 
@@ -81,7 +88,7 @@ def get_pets() -> list:
 
 def create_new_pet():
     """ create a and returns a new pet object"""
-    name = input("Select a name for your pet: ")
+    name = input("Select a name for your fish: ")
     pet = Pet(name)
     return pet
 

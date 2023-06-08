@@ -16,7 +16,7 @@ new_menu = """
 
 def main():
     pet = None
-    tank = None
+    tank = get_tank()
 
     # Create a menu for pet playgroud
     options = ("1", "2", "3", "4")
@@ -26,8 +26,6 @@ def main():
         
         if choice == "1":
             pet = create_new_pet()
-            # if there is a tank, use it, if not, make a new one
-            tank = get_tank()
             pet = interact_with_pet(pet)
 
         elif choice == "2":
@@ -39,8 +37,6 @@ def main():
                 print("\nYou have no pets to play with.")
                 print("Try creating a new pet!")
                 continue
-            # retrieve tank
-            tank = get_tank()
             # use choose_action from pet.py
             pet = interact_with_pet(pet)
 
@@ -51,6 +47,11 @@ def main():
                 print("The fish's data has been saved.")
 
     print("\nThanks for playing!")
+
+def get_tank():
+    tank = Tank()
+    tank.load_tank_data()
+    return tank
 
 def interact_with_pet(pet):
     """interact with the pet"""
@@ -83,16 +84,6 @@ def create_new_pet():
     name = input("Select a name for your pet: ")
     pet = Pet(name)
     return pet
-
-def create_new_tank():
-    tank = Tank()
-    return tank
-
-def get_tank():
-    tank = utilities.get_file_contents("data/", "tank.json")
-    tank = json.loads(tank)
-    new_tank = Tank.create_tank(tank)
-    return new_tank
 
 if __name__== "__main__":
     main()

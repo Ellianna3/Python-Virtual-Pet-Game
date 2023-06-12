@@ -108,7 +108,7 @@ class Pet:
         menu = f"\nChoose what to do next with {self.name}:\n"
         menu += f"\n\t1 - Play with {self.name}\n\t2 - Photograph {self.name}"
         menu += f"\n\t3 - Feed {self.name}\n\t4 - Display {self.name}'s stats"
-        menu += f"\n\t5 - Stop interacting with {self.name} (Quit)"
+        menu += f"\n\t5 - Stop interacting with {self.name} (Quit)\n"
         
         choice = ""
         while choice != "5":
@@ -131,17 +131,18 @@ class Pet:
 
     # clean the fish's tank, improve health and happiness
     def picture(self):
-        print(f"\nYou grab your phone and pull up the camera app. {self.name} ")
-        print(f"seems to know what you are doing and poses. The picture turns ")
-        print("out great! ")
+        desc = f"\nYou grab your phone and pull up the camera app. {self.name} "
+        desc += f"seems to know what you are doing and poses. It turns out great!"
+        print(desc)
         self.health += 1
         if self.health > 10:
             self.health = 10
 
     # feed the fish, improve hunger and tiredness
     def feed(self):
-        print("\nYou drop a bit of fish food into the tank.")
-        print(f"{self.name} swims to the top of the tank and eats it!")
+        desc = "\nYou drop a bit of fish food into the tank. "
+        desc += f"{self.name} swims to the top of the tank and eats it!"
+        print(desc)
         self.hunger -= 1
         if self.hunger < 0:
             self.hunger = 0

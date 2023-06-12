@@ -10,7 +10,7 @@ new_menu = """
     Here is your list of options:
         1 - Option 1: Buy a new fish
         2 - Option 2: Select your fish to interact with
-        3 - Option 3: Save fish data
+        3 - Option 3: Save fish and tank data
         4 - Option 4: Clean your fish tank
         5 - Option 5: Quit
     """
@@ -48,10 +48,10 @@ def main():
                 print("The fish's data has been saved.")
 
         elif choice == "4":
-            print("\nYour fish will appreciate a clean tank!")
             tank.cleanliness += 2
             if tank.cleanliness > 10:
                 tank.cleanliness = 10
+            print("\nYour fish will appreciate a clean tank!")
 
     print("\nThanks for playing!")
 
